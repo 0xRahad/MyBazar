@@ -36,6 +36,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.6
   velocity_x:
+  get: ^4.6.6
 
 dev_dependencies:
   flutter_test:
@@ -100,5 +101,6 @@ flutter:
     - family: sans_bold
       fonts:
         - asset: assets/fonts/sans_bold.ttf
+
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
