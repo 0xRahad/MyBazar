@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:mybazar/consts/consts.dart';
 import 'package:mybazar/consts/lists.dart';
+import 'package:mybazar/views/auth_screen/signup_screen.dart';
 import 'package:mybazar/widgets/app_logo_widget.dart';
 import 'package:mybazar/widgets/bg_widget.dart';
 import 'package:mybazar/widgets/custom_btn.dart';
@@ -48,7 +50,9 @@ class LoginScreen extends StatelessWidget {
                           textColor: redColor,
                           color: lightGolden,
                           title: signup,
-                          onPressed: () {})
+                          onPressed: () {
+                            Get.to(SignupScreen());
+                          })
                       .box
                       .width(context.screenWidth - 50)
                       .make(),
