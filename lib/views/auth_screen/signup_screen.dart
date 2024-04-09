@@ -1,9 +1,6 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:mybazar/consts/consts.dart';
-import 'package:mybazar/consts/lists.dart';
+import 'package:mybazar/stateControllers/CheckBoxController.dart';
 import 'package:mybazar/views/auth_screen/login_screen.dart';
 import 'package:mybazar/widgets/app_logo_widget.dart';
 import 'package:mybazar/widgets/bg_widget.dart';
@@ -18,13 +15,15 @@ class SignupScreen extends StatefulWidget {
 }
 
 class _SignupScreenState extends State<SignupScreen> {
+  final CheckboxController cbController = Get.put(CheckboxController());
+
   @override
   Widget build(BuildContext context) {
     return bgWidget(
         child: Scaffold(
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
-        physics: BouncingScrollPhysics(),
+        physics: const BouncingScrollPhysics(),
         child: Center(
           child: Column(
             children: [
@@ -42,31 +41,38 @@ class _SignupScreenState extends State<SignupScreen> {
                   5.heightBox,
                   Row(
                     children: [
-                      Checkbox(
-                          checkColor: redColor,
-                          value: false,
-                          onChanged: (newValue) {}),
+                      Obx(() => Checkbox(
+                            value: cbController.isChecked.value,
+                            onChanged: (newValue) {
+                              cbController.makeChecked(newValue);
+                            },
+                          )),
                       5.widthBox,
                       Expanded(
                         child: RichText(
-                            text: const TextSpan(children: [
-                          TextSpan(
+                          text: const TextSpan(children: [
+                            TextSpan(
                               text: "I agree to the ",
                               style:
-                                  TextStyle(fontFamily: bold, color: fontGrey)),
-                          TextSpan(
+                                  TextStyle(fontFamily: bold, color: fontGrey),
+                            ),
+                            TextSpan(
                               text: termsAndCond,
                               style:
-                                  TextStyle(fontFamily: bold, color: redColor)),
-                          TextSpan(
+                                  TextStyle(fontFamily: bold, color: redColor),
+                            ),
+                            TextSpan(
                               text: " & ",
                               style:
-                                  TextStyle(fontFamily: bold, color: fontGrey)),
-                          TextSpan(
+                                  TextStyle(fontFamily: bold, color: fontGrey),
+                            ),
+                            TextSpan(
                               text: privacyPolicy,
                               style:
-                                  TextStyle(fontFamily: bold, color: redColor)),
-                        ])),
+                                  TextStyle(fontFamily: bold, color: redColor),
+                            ),
+                          ]),
+                        ),
                       )
                     ],
                   ),
@@ -81,21 +87,18 @@ class _SignupScreenState extends State<SignupScreen> {
                       .make(),
                   10.heightBox,
                   GestureDetector(
-                    onTap: (){
-                      Get.to(LoginScreen());
+                    onTap: () {
+                      Get.to(const LoginScreen());
                     },
-                    child: RichText(text: const TextSpan(
-                      children: [
-                        TextSpan(
+                    child: RichText(
+                        text: const TextSpan(children: [
+                      TextSpan(
                           text: alreadyHaveAcc,
-                          style: TextStyle(fontFamily: bold,color: fontGrey)
-                        ),
-                        TextSpan(
-                            text: login,
-                            style: TextStyle(fontFamily: bold,color: redColor)
-                        ),
-                      ]
-                    )),
+                          style: TextStyle(fontFamily: bold, color: fontGrey)),
+                      TextSpan(
+                          text: login,
+                          style: TextStyle(fontFamily: bold, color: redColor)),
+                    ])),
                   )
                 ],
               )

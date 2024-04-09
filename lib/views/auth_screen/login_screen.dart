@@ -1,8 +1,8 @@
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mybazar/consts/consts.dart';
 import 'package:mybazar/consts/lists.dart';
 import 'package:mybazar/views/auth_screen/signup_screen.dart';
+import 'package:mybazar/views/home_screen/home.dart';
 import 'package:mybazar/widgets/app_logo_widget.dart';
 import 'package:mybazar/widgets/bg_widget.dart';
 import 'package:mybazar/widgets/custom_btn.dart';
@@ -17,7 +17,7 @@ class LoginScreen extends StatelessWidget {
         child: Scaffold(
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
-        physics: BouncingScrollPhysics(),
+        physics: const BouncingScrollPhysics(),
         child: Center(
           child: Column(
             children: [
@@ -39,7 +39,9 @@ class LoginScreen extends StatelessWidget {
                           textColor: whiteColor,
                           color: redColor,
                           title: login,
-                          onPressed: () {})
+                          onPressed: () {
+                            Get.to(const Home());
+                          })
                       .box
                       .width(context.screenWidth - 50)
                       .make(),
@@ -51,7 +53,7 @@ class LoginScreen extends StatelessWidget {
                           color: lightGolden,
                           title: signup,
                           onPressed: () {
-                            Get.to(SignupScreen());
+                            Get.to(const SignupScreen());
                           })
                       .box
                       .width(context.screenWidth - 50)
